@@ -30,7 +30,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ---------- STARFIELD + ORBITS ---------- */
+/* ---------- BACKGROUND LAYERS ---------- */
 .background {
   position: fixed;
   inset: 0;
@@ -38,6 +38,7 @@ body {
   z-index: 0;
 }
 
+/* Stars */
 .background::before {
   content: "";
   position: absolute;
@@ -55,17 +56,92 @@ body {
   to { transform: translateY(-300px); }
 }
 
+/* Orbits */
 .orbit {
   position: absolute;
-  inset: -20%;
+  inset: -25%;
   border: 1px dashed rgba(124,124,255,0.08);
   border-radius: 50%;
-  animation: rotate 120s linear infinite;
+  animation: rotate 140s linear infinite;
 }
 
 @keyframes rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* ---------- SATELLITE COLLISION ---------- */
+.collision {
+  position: absolute;
+  inset: 0;
+}
+
+.sat {
+  position: absolute;
+  width: 18px;
+  height: 10px;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(0,255,224,0.6);
+}
+
+.sat::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--accent2);
+  right: -6px;
+  top: 2px;
+}
+
+.sat.a {
+  top: 40%;
+  left: -10%;
+  animation: satA 14s linear infinite;
+}
+
+.sat.b {
+  top: 60%;
+  right: -10%;
+  animation: satB 14s linear infinite;
+}
+
+@keyframes satA {
+  0% { transform: translateX(0); }
+  45% { transform: translateX(55vw); }
+  50% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes satB {
+  0% { transform: translateX(0); }
+  45% { transform: translateX(-55vw); }
+  50% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Debris burst */
+.debris span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--accent2);
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  animation: debris 14s linear infinite;
+}
+
+@keyframes debris {
+  0%, 45% { opacity: 0; transform: translate(0,0); }
+  50% { opacity: 1; }
+  70% {
+    opacity: 0;
+    transform: translate(
+      calc(-50px + 100px * var(--dx)),
+      calc(-50px + 100px * var(--dy))
+    );
+  }
 }
 
 /* ---------- GLOBAL ---------- */
@@ -95,7 +171,7 @@ h2 {
 
 /* ---------- HERO ---------- */
 .hero {
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   text-align: center;
@@ -105,10 +181,10 @@ h2 {
   font-family: 'Press Start 2P', monospace;
   font-size: clamp(28px, 5vw, 46px);
   color: var(--accent);
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
-/* ---------- TEAM FIRST ---------- */
+/* ---------- TEAM ---------- */
 .team {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -124,8 +200,7 @@ h2 {
   height: 110px;
   margin: auto;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at top left, var(--accent), var(--accent2));
+  background: radial-gradient(circle at top left, var(--accent), var(--accent2));
   box-shadow: 0 0 30px rgba(0,255,224,0.25);
   margin-bottom: 14px;
 }
@@ -137,40 +212,12 @@ h2 {
 .member p {
   font-size: 0.85rem;
   color: var(--muted);
-  margin-bottom: 6px;
 }
 
 .member a {
   font-size: 0.8rem;
   color: var(--accent);
   text-decoration: none;
-}
-
-/* ---------- STORY ---------- */
-.story {
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-  color: var(--muted);
-  font-size: 1.05rem;
-}
-
-/* ---------- RESULTS ---------- */
-.results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-}
-
-.placeholder {
-  height: 180px;
-  border: 1px dashed rgba(255,255,255,0.15);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-size: 0.85rem;
 }
 
 /* ---------- FOOTER ---------- */
@@ -187,84 +234,66 @@ footer {
 
 <div class="background">
   <div class="orbit"></div>
+
+  <div class="collision">
+    <div class="sat a"></div>
+    <div class="sat b"></div>
+    <div class="debris">
+      <span style="--dx:0.2;--dy:0.8"></span>
+      <span style="--dx:0.8;--dy:0.3"></span>
+      <span style="--dx:0.4;--dy:0.6"></span>
+      <span style="--dx:0.6;--dy:0.2"></span>
+    </div>
+  </div>
 </div>
 
 <section class="hero">
   <div style="width:100%">
     <h1>DebriSolver</h1>
 
-    <!-- TEAM IMMEDIATELY -->
-    <div class="team">
-      <div class="card member">
-        <div class="avatar"></div>
-        <h3>Elena Ancona</h3>
-        <p>Space Industry Consultant</p>
-        <a href="#">LinkedIn</a>
+    <!-- THE CHALLENGE (MOVED HERE) -->
+    <section>
+      <h2>The Challenge</h2>
+      <div class="card">
+        Orbital congestion and fragmentation events threaten the sustainability
+        of space operations. The 2024 Long March 6A breakup generated more than
+        700 fragments, creating recurring high-risk conjunctions with active missions.
       </div>
-      <div class="card member">
-        <div class="avatar"></div>
-        <h3>Giovanni Facchinetti</h3>
-        <p>Space Debris Mitigation Engineer</p>
-        <a href="#">LinkedIn</a>
+    </section>
+
+    <!-- TEAM -->
+    <section>
+      <div class="team">
+        <div class="card member">
+          <div class="avatar"></div>
+          <h3>Elena Ancona</h3>
+          <p>Space Industry Consultant</p>
+          <a href="#">LinkedIn</a>
+        </div>
+
+        <div class="card member">
+          <div class="avatar"></div>
+          <h3>Giovanni Facchinetti</h3>
+          <p>Space Debris Mitigation Engineer</p>
+          <a href="#">LinkedIn</a>
+        </div>
+
+        <div class="card member">
+          <div class="avatar"></div>
+          <h3>Vincenzo Quatraro</h3>
+          <p>AI & Data Analytics Consultant</p>
+          <a href="#">LinkedIn</a>
+        </div>
+
+        <div class="card member">
+          <div class="avatar"></div>
+          <h3>Diego Guerra</h3>
+          <p>Spacecraft Telecommunications Engineer</p>
+          <a href="#">LinkedIn</a>
+        </div>
       </div>
-      <div class="card member">
-        <div class="avatar"></div>
-        <h3>Diego Guerra</h3>
-        <p>Spacecraft Telecommunications Engineer</p>
-        <a href="#">LinkedIn</a>
-      </div>
-      <div class="card member">
-        <div class="avatar"></div>
-        <h3>Vincenzo Quatraro</h3>
-        <p>AI & Data Analytics Consultant</p>
-        <a href="#">LinkedIn</a>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section>
-  <div class="story">
-    Developed for the <b>DebriSolver Competition</b> organized by the
-    Saudi Space Agency and presented at the
-    <b>Space Debris Conference 2026</b> in Riyadh.
-  </div>
-</section>
-
-<section>
-  <h2>The Challenge</h2>
-  <div class="card">
-    Orbital congestion and fragmentation events threaten the sustainability
-    of space operations. The 2024 Long March 6A breakup generated more than
-    700 fragments, creating recurring high-risk conjunctions with active missions.
-  </div>
-</section>
-
-<section>
-  <h2>Our Solution</h2>
-  <div class="card">
-    Using over <b>500,000 CDMs</b>, we reconstruct debris evolution and
-    classify conjunctions. The <b>STM-ConOps Score</b> translates technical
-    risk into actionable, proportionate STM guidance.
-  </div>
-</section>
-
-<section>
-  <h2>Results Snapshot</h2>
-  <div class="results">
-    <div class="card"><div class="placeholder">CDM Criticality</div></div>
-    <div class="card"><div class="placeholder">Debris Cloud Evolution</div></div>
-    <div class="card"><div class="placeholder">High-Risk Events</div></div>
-  </div>
-</section>
-
-<section>
-  <h2>Deliverables</h2>
-  <div class="card">
-    📄 Full Paper (PDF)<br>
-    🖼 Conference Poster (PDF)<br>
-    💻 GitHub Repository<br>
-    🚀 Saudi Space Agency Competition
   </div>
 </section>
 
