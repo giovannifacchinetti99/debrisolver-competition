@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DebriSolver – Saudi Space Agency Competition</title>
+<title>DebriSolver – Space Debris Conference 2026</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Fonts -->
@@ -25,50 +25,58 @@ body {
   font-family: 'Inter', sans-serif;
   background: radial-gradient(circle at bottom, #08162b, var(--bg));
   color: var(--text);
+  overflow-x: hidden;
 }
 
-/* ---------- HERO ---------- */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px;
+/* ---------- RETRO STARFIELD ---------- */
+.stars, .debris {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.hero h1 {
-  font-family: 'Press Start 2P', monospace;
-  font-size: clamp(24px, 4vw, 42px);
-  color: var(--accent);
-  margin-bottom: 20px;
+.stars::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, white, transparent),
+    radial-gradient(1px 1px at 80% 30%, white, transparent),
+    radial-gradient(1px 1px at 40% 70%, white, transparent),
+    radial-gradient(1px 1px at 70% 90%, white, transparent);
+  animation: stars 20s linear infinite;
 }
 
-.hero p {
-  max-width: 700px;
-  margin: auto;
-  color: var(--muted);
-  font-size: 1.1rem;
+@keyframes stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
 }
 
-.badge {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 10px 18px;
-  border: 1px solid var(--accent2);
-  border-radius: 999px;
-  font-size: 0.9rem;
-  color: var(--accent2);
+.debris span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--accent2);
+  opacity: 0.7;
+  animation: debris 15s linear infinite;
 }
 
-/* ---------- SECTIONS ---------- */
+@keyframes debris {
+  from { transform: translateY(-10vh) translateX(0); }
+  to { transform: translateY(110vh) translateX(30px); }
+}
+
+/* ---------- GLOBAL ---------- */
 section {
+  position: relative;
+  z-index: 1;
   max-width: 1100px;
   margin: auto;
-  padding: 80px 20px;
+  padding: 90px 20px;
 }
 
-section h2 {
+h2 {
   font-family: 'Press Start 2P', monospace;
   font-size: 18px;
   color: var(--accent);
@@ -77,77 +85,110 @@ section h2 {
 
 .card {
   background: var(--card);
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 30px;
   box-shadow: 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content {
+  width: 100%;
+}
+
+.hero h1 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(26px, 5vw, 44px);
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.team-names {
+  font-size: 0.9rem;
+  color: var(--accent2);
+  margin-bottom: 24px;
+}
+
+.hero p {
+  max-width: 760px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.badge {
+  margin-top: 28px;
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid var(--accent2);
+  border-radius: 999px;
+  font-size: 0.85rem;
 }
 
 /* ---------- RESULTS ---------- */
 .results {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px;
 }
 
 .placeholder {
-  height: 200px;
+  height: 180px;
   border: 1px dashed rgba(255,255,255,0.2);
-  border-radius: 10px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 /* ---------- TEAM ---------- */
 .team {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 24px;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin: auto;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  margin-bottom: 14px;
 }
 
 .member {
   text-align: center;
 }
 
-.avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin: auto;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  margin-bottom: 16px;
-}
-
 .member h3 {
-  margin: 8px 0 4px;
+  margin: 6px 0 4px;
 }
 
 .member p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--muted);
 }
 
 .member a {
   color: var(--accent);
+  font-size: 0.8rem;
   text-decoration: none;
-  font-size: 0.85rem;
-}
-
-/* ---------- LINKS ---------- */
-.links a {
-  display: block;
-  color: var(--accent);
-  text-decoration: none;
-  margin-bottom: 10px;
 }
 
 /* ---------- FOOTER ---------- */
 footer {
   text-align: center;
   padding: 40px 20px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--muted);
 }
 </style>
@@ -155,50 +196,65 @@ footer {
 
 <body>
 
-<div class="hero">
-  <div>
+<div class="stars"></div>
+<div class="debris">
+  <span style="left:10%;animation-delay:0s"></span>
+  <span style="left:30%;animation-delay:3s"></span>
+  <span style="left:60%;animation-delay:6s"></span>
+  <span style="left:80%;animation-delay:9s"></span>
+</div>
+
+<section class="hero">
+  <div class="hero-content">
     <h1>DebriSolver</h1>
+
+    <div class="team-names">
+      Elena Ancona · Giovanni Facchinetti · Diego Guerra · Vincenzo Quatraro
+    </div>
+
     <p>
-      A space-traffic-management solution developed for the <b>DebriSolver Competition</b>,
-      organized by the Saudi Space Agency, addressing orbital debris risk through
-      large-scale CDM analysis and systemic STM metrics.
+      A Space Traffic Management solution developed for the
+      <b>DebriSolver Competition</b> organized by the Saudi Space Agency,
+      addressing orbital debris risk through large-scale conjunction analysis.
     </p>
+
     <div class="badge">
       Space Debris Conference 2026 · Riyadh
     </div>
   </div>
-</div>
+</section>
 
 <section>
-  <h2>Project Overview</h2>
+  <h2>The Challenge</h2>
   <div class="card">
-    <p>
-      Our work analyzes the 2024 Long March 6A fragmentation event (700+ fragments)
-      using more than 500,000 Conjunction Data Messages to identify operational
-      criticalities in current Space Traffic Management frameworks.
-    </p>
-    <p>
-      The key innovation is the <b>STM-ConOps Score</b>, a composite metric enabling
-      risk-based, proportionate regulation by combining technical, governance,
-      and mission-level factors.
-    </p>
+    Satellites are increasingly exposed to collision risk due to orbital
+    congestion, mega-constellations, and fragmentation events.  
+    In 2024 alone, the Long March 6A breakup generated over 700 fragments
+    threatening critical space infrastructure.
   </div>
 </section>
 
 <section>
-  <h2>Key Results</h2>
+  <h2>Our Solution</h2>
+  <div class="card">
+    We analyze more than <b>500,000 Conjunction Data Messages</b> to reconstruct
+    debris-cloud evolution and identify operational risk drivers.  
+    Our key innovation is the <b>STM-ConOps Score</b>, enabling proportionate,
+    risk-based STM regulation.
+  </div>
+</section>
+
+<section>
+  <h2>Results Snapshot</h2>
   <div class="results">
     <div class="card">
-      <div class="placeholder">CDM Classification Plot</div>
-      <p class="muted">Critical vs Concerning vs Nominal events.</p>
+      <div class="placeholder">CDM Criticality Breakdown</div>
     </div>
     <div class="card">
       <div class="placeholder">Fragment Cloud Evolution</div>
-      <p class="muted">Temporal evolution of debris population.</p>
     </div>
     <div class="card">
-      <div class="placeholder">Event Criticality Distribution</div>
-      <p class="muted">Operational risk beyond fragment count.</p>
+      <div class="placeholder">High-Risk Events Distribution</div>
     </div>
   </div>
 </section>
@@ -234,17 +290,17 @@ footer {
 </section>
 
 <section>
-  <h2>Outputs & Links</h2>
-  <div class="card links">
-    <a href="#">📄 Full Paper (PDF)</a>
-    <a href="#">🖼 Conference Poster (PDF)</a>
-    <a href="#">💻 GitHub Repository</a>
-    <a href="https://ssa.gov.sa/c/">🚀 Saudi Space Agency – Competition</a>
+  <h2>Deliverables</h2>
+  <div class="card">
+    📄 Full Paper (PDF)<br>
+    🖼 Conference Poster (PDF)<br>
+    💻 GitHub Repository<br>
+    🚀 Saudi Space Agency Competition
   </div>
 </section>
 
 <footer>
-  © 2026 DebriSolver Team · Presented at Space Debris Conference, Riyadh
+  © 2026 DebriSolver Team · Space Debris Conference · Riyadh
 </footer>
 
 </body>
