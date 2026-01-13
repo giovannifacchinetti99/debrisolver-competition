@@ -1,96 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Team Name – Competition</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>DebriSolver – Saudi Space Agency Competition</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f5f7fa;
-            color: #333;
-            text-align: center;
-        }
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-        header {
-            background: #0a2540;
-            color: white;
-            padding: 60px 20px;
-        }
+<style>
+:root {
+  --bg: #050b14;
+  --card: #0c1624;
+  --accent: #00ffe0;
+  --accent2: #7c7cff;
+  --text: #e6ecf2;
+  --muted: #9aa4b2;
+}
 
-        section {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: auto;
-        }
+* { box-sizing: border-box; }
 
-        h1, h2 {
-            margin-bottom: 20px;
-        }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at bottom, #08162b, var(--bg));
+  color: var(--text);
+}
 
-        .team {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
+/* ---------- HERO ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
 
-        .member {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-        }
+.hero h1 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(24px, 4vw, 42px);
+  color: var(--accent);
+  margin-bottom: 20px;
+}
 
-        footer {
-            background: #eaeaea;
-            padding: 20px;
-            font-size: 0.9em;
-        }
-    </style>
+.hero p {
+  max-width: 700px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 18px;
+  border: 1px solid var(--accent2);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: var(--accent2);
+}
+
+/* ---------- SECTIONS ---------- */
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 80px 20px;
+}
+
+section h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: var(--accent);
+  margin-bottom: 30px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* ---------- RESULTS ---------- */
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.placeholder {
+  height: 200px;
+  border: 1px dashed rgba(255,255,255,0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- TEAM ---------- */
+.team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.member {
+  text-align: center;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: auto;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  margin-bottom: 16px;
+}
+
+.member h3 {
+  margin: 8px 0 4px;
+}
+
+.member p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.member a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+/* ---------- LINKS ---------- */
+.links a {
+  display: block;
+  color: var(--accent);
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+</style>
 </head>
+
 <body>
 
-<header>
-    <h1>Team Name</h1>
-    <p>Competition Name – 2026</p>
-</header>
-
-<section>
-    <h2>About the Competition</h2>
+<div class="hero">
+  <div>
+    <h1>DebriSolver</h1>
     <p>
-        Brief description of the competition and your challenge.
+      A space-traffic-management solution developed for the <b>DebriSolver Competition</b>,
+      organized by the Saudi Space Agency, addressing orbital debris risk through
+      large-scale CDM analysis and systemic STM metrics.
     </p>
-</section>
-
-<section>
-    <h2>Our Team</h2>
-    <div class="team">
-        <div class="member">
-            <h3>Member 1</h3>
-            <p>Role</p>
-        </div>
-        <div class="member">
-            <h3>Member 2</h3>
-            <p>Role</p>
-        </div>
-        <div class="member">
-            <h3>Member 3</h3>
-            <p>Role</p>
-        </div>
+    <div class="badge">
+      Space Debris Conference 2026 · Riyadh
     </div>
+  </div>
+</div>
+
+<section>
+  <h2>Project Overview</h2>
+  <div class="card">
+    <p>
+      Our work analyzes the 2024 Long March 6A fragmentation event (700+ fragments)
+      using more than 500,000 Conjunction Data Messages to identify operational
+      criticalities in current Space Traffic Management frameworks.
+    </p>
+    <p>
+      The key innovation is the <b>STM-ConOps Score</b>, a composite metric enabling
+      risk-based, proportionate regulation by combining technical, governance,
+      and mission-level factors.
+    </p>
+  </div>
 </section>
 
 <section>
-    <h2>Links</h2>
-    <p>
-        <a href="https://github.com/your-repo">GitHub Repository</a>
-    </p>
+  <h2>Key Results</h2>
+  <div class="results">
+    <div class="card">
+      <div class="placeholder">CDM Classification Plot</div>
+      <p class="muted">Critical vs Concerning vs Nominal events.</p>
+    </div>
+    <div class="card">
+      <div class="placeholder">Fragment Cloud Evolution</div>
+      <p class="muted">Temporal evolution of debris population.</p>
+    </div>
+    <div class="card">
+      <div class="placeholder">Event Criticality Distribution</div>
+      <p class="muted">Operational risk beyond fragment count.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>The Team</h2>
+  <div class="team">
+    <div class="card member">
+      <div class="avatar"></div>
+      <h3>Elena Ancona</h3>
+      <p>Space Industry Consultant</p>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div class="card member">
+      <div class="avatar"></div>
+      <h3>Giovanni Facchinetti</h3>
+      <p>Space Debris Mitigation Engineer</p>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div class="card member">
+      <div class="avatar"></div>
+      <h3>Diego Guerra</h3>
+      <p>Spacecraft Telecommunications Engineer</p>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div class="card member">
+      <div class="avatar"></div>
+      <h3>Vincenzo Quatraro</h3>
+      <p>AI & Data Analytics Consultant</p>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Outputs & Links</h2>
+  <div class="card links">
+    <a href="#">📄 Full Paper (PDF)</a>
+    <a href="#">🖼 Conference Poster (PDF)</a>
+    <a href="#">💻 GitHub Repository</a>
+    <a href="https://ssa.gov.sa/c/">🚀 Saudi Space Agency – Competition</a>
+  </div>
 </section>
 
 <footer>
-    © 2026 Team Name
+  © 2026 DebriSolver Team · Presented at Space Debris Conference, Riyadh
 </footer>
 
 </body>
