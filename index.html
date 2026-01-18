@@ -76,6 +76,19 @@ body {
   inset: 0;
 }
 
+.collision.instance {
+  opacity: 0.35;
+}
+
+.collision.instance.delay1 { animation-delay: 0s; }
+.collision.instance.delay2 { animation-delay: 6s; }
+.collision.instance.delay3 { animation-delay: 12s; }
+
+.collision.instance.pos1 { top: 10%; }
+.collision.instance.pos2 { top: 45%; }
+.collision.instance.pos3 { top: 75%; }
+
+
 .sat {
   position: absolute;
   width: 18px;
@@ -243,16 +256,36 @@ footer {
 <div class="background">
   <div class="orbit"></div>
 
-  <div class="collision">
-    <div class="sat a"></div>
-    <div class="sat b"></div>
-    <div class="debris">
-      <span style="--dx:0.2;--dy:0.8"></span>
-      <span style="--dx:0.8;--dy:0.3"></span>
-      <span style="--dx:0.4;--dy:0.6"></span>
-      <span style="--dx:0.6;--dy:0.2"></span>
-    </div>
+  <div class="collision instance pos1 delay1">
+  <div class="sat a"></div>
+  <div class="sat b"></div>
+  <div class="debris">
+    <span style="--dx:0.2;--dy:0.8"></span>
+    <span style="--dx:0.8;--dy:0.3"></span>
+    <span style="--dx:0.4;--dy:0.6"></span>
+    <span style="--dx:0.6;--dy:0.2"></span>
   </div>
+</div>
+
+<div class="collision instance pos2 delay2">
+  <div class="sat a"></div>
+  <div class="sat b"></div>
+  <div class="debris">
+    <span style="--dx:0.1;--dy:0.9"></span>
+    <span style="--dx:0.7;--dy:0.4"></span>
+    <span style="--dx:0.5;--dy:0.7"></span>
+  </div>
+</div>
+
+<div class="collision instance pos3 delay3">
+  <div class="sat a"></div>
+  <div class="sat b"></div>
+  <div class="debris">
+    <span style="--dx:0.3;--dy:0.6"></span>
+    <span style="--dx:0.6;--dy:0.3"></span>
+  </div>
+</div>
+
 </div>
 
 <section class="hero">
